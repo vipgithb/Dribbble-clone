@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #pinkImg{
+            float: left;
+            margin-top: 0;
+            height: 70px;
+            width: 140px;
+        }
+
+    .profile-pic-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .profile-pic {
+        width: 50px; /* Initial smaller size */
+        height: 50px; /* Initial smaller size */
+        object-fit: cover;
+        cursor: pointer;
+        transition: all 0.3s ease; /* Smooth transition on click */
+    }
+
+    /* When the input is active (after clicking), expand the image */
+    #profile-upload:focus + .profile-pic {
+        width: 100%;
+        height: 100%;
+    }
+
+    .raw{
+        margin-top: 8%;
+        margin-left: 8%;
+        justify-content: center;
+    }
+
+    
+
+    
+    </style>
+</head>
+<body>
+    <img id="pinkImg" src="./components/pink-dribbble" alt="dribbble">
+    <div class="raw">
+    <div class="container">
+        <h2 style="font-weight: 900;">Welcome! let's create your profile</h2>
+        <p style="font-size: small; color: rgb(88, 86, 82);">Let others get to know you better! You can do these later</p>
+        <br>
+        <p style="font-weight: 800;">Add an avtar</p>
+        <form class="profileForm" action="BringtoDribbble.html" method="post">
+            <div class="container1">
+                <div class="profile-pic-container">
+                    <img src="./components/camera-icon.jpg" alt="Profile Picture" class="profile-pic" id="profile-image">
+                    <input type="file" id="profile-upload" accept="image/*" style="display: none;" required>
+                </div> <br><input type="file" style="height: 250px; width: 250px;" id="file-input">  
+            </div>
+            <br><br>
+            <div class="location">
+                <p style="font-weight: bold;">Add your location</p>
+                <input type="search" placeholder="Enter a location" style="border-top: 2in; border-left: 2in; border-right: 2in;">
+            </div>
+            <br><br>
+        </form>
+        <button id="NxtBtn" onclick="window.location.href = 'BringtoDribbble.html';">Next</button>
+        <p style="margin-left: 5vw;">or Press RETUEN</p>
+    </div>
+    </div>
+    <script>
+        const profileImage = document.getElementById("profile-image");
+        const profileUpload = document.getElementById("profile-upload");
+    
+        // When the image is clicked, trigger the file input
+        profileImage.addEventListener("click", () => {
+            profileUpload.click();
+        });
+    
+        // When a file is selected, display it as the profile picture
+        profileUpload.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profileImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+    
+            // Automatically expand the image within 1 second
+            setTimeout(() => {
+                profileImage.style.width = "100%";
+                profileImage.style.height = "100%";
+            }, 1000);
+        });
+    </script>
+    <script>
+        function validateFields() {
+            const formFields = document.querySelectorAll("#profileForm input[required]");
+            let allFieldsFilled = true;
+    
+            formFields.forEach(field => {
+                if (!field.value.trim()) {
+                    allFieldsFilled = false;
+                }
+            });
+    
+            if (!allFieldsFilled) {
+                alert("Please fill in all required fields.");
+                event.preventDefault(); // Prevent form submission
+            }
+        }
+    </script>
+    
+</body>
+</html>

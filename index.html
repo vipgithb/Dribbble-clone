@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <style>
+        .col1{
+            float: left;
+            width: 40%;
+            height: 110vh;
+            background-color: #F1D38A;
+        }
+        .Container{
+            float: left;
+            margin-left: 8%;
+            margin-top: 10%;
+            color: #79580c;
+        }
+        #pic{
+            width: 28dvw;
+            height: 60dvh;
+        }
+
+        .col2{
+            text-align: center;
+        }
+
+        /* Basic styling for the form */
+        .Extxt{
+            margin-left: 20%;
+        }
+
+        #registration-form{
+            float: right;
+            width: 60%;
+            height: 100vh;
+            background-color: white;
+            text-align: left;
+            margin-top: 10dvw;
+        }
+
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            font-weight: bold;
+            background-color: #e8e8e7;
+            width: 30%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #971b1b;
+            color: #fff;
+            border: none;
+            padding: 10px 40px 10px 40px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #650404;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col1">
+            <div class="Container">
+                <div class="Dribbble">Dribbble</div>
+                <h2>Discover the world's top <br>Designers & Creatives.</h2>
+                <br>
+                <img id="pic" src="./components/local.jpg" alt="">
+                <p>Art by <a href="#">Peter Tarka</a></p>
+            </div>
+        </div>
+
+        <div class="col2">
+            <div class="Extxt">
+                <form id="registration-form" action="profile.html" method="post">
+                   <h2>Sign up to Dribble</h2>
+                    <br>
+                    <br>
+                    <label for="name">Name:</label>      
+                    <label for="username" style="margin-left: 13dvw;">Username:</label>
+                        <br>
+                    <input type="text" id="name" name="name" placeholder="John" required>
+                    <input type="text" id="username" name="username" style="margin-left: 0.3vw;" placeholder="John123" required>
+                    <br>
+                    <label for="email">Email:</label>
+                    <br>
+                    <input type="email" id="email" name="email" style="width: 65%;" placeholder="account@refero.design" required>
+                    <br>
+                    <label for="password">Password:</label>
+                    <br>
+                    <input type="password" id="password" name="password" style="width: 65%;" placeholder="6+ characters" required>
+                    <br>
+                    <input type="checkbox"><div style="margin-left: 2dvw;">Creating an account means you're okay with our <a href="#" id="decor">Terms of <br> Service, Privacy Policy</a> and our default <a href="#" id="decor">Notification <br> Settings.</a></div>
+                    <br>
+                    <button type="submit" id="create-account-btn">Create Account</button>
+                    <h5><p style="font-size: small; color: rgb(120, 100, 100);">This site is protected by reCAPTCHA and the Google <br><a href="#" id="decor">Privacy Policy </a>and <a href="#" id="decor">Terms of Service </a>apply.</p></h5>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("registration-form").addEventListener("submit", function(event) {
+            const formFields = document.querySelectorAll("#registration-form input[required]");
+            let allFieldsFilled = true;
+    
+            formFields.forEach(field => {
+                if (!field.value.trim()) {
+                    allFieldsFilled = false;
+                }
+            });
+    
+            if (!allFieldsFilled) {
+                event.preventDefault(); // Prevent form submission
+                alert("Please fill in all required fields.");
+            }
+        });
+    </script>
+       
+</body>
+</html>
